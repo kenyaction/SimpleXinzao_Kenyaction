@@ -1,0 +1,11 @@
+c:\users\baost\documents\visual studio 2013\Projects\TestEloBuddy\TestEloBuddy\bin\Debug\TestEloBuddy.exe.config
+c:\users\baost\documents\visual studio 2013\Projects\TestEloBuddy\TestEloBuddy\bin\Debug\TestEloBuddy.exe
+c:\users\baost\documents\visual studio 2013\Projects\TestEloBuddy\TestEloBuddy\bin\Debug\TestEloBuddy.pdb
+c:\users\baost\documents\visual studio 2013\Projects\TestEloBuddy\TestEloBuddy\bin\Debug\EloBuddy.dll
+c:\users\baost\documents\visual studio 2013\Projects\TestEloBuddy\TestEloBuddy\bin\Debug\EloBuddy.SDK.dll
+c:\users\baost\documents\visual studio 2013\Projects\TestEloBuddy\TestEloBuddy\bin\Debug\Newtonsoft.Json.dll
+c:\users\baost\documents\visual studio 2013\Projects\TestEloBuddy\TestEloBuddy\bin\Debug\SharpDX.Direct3D9.dll
+c:\users\baost\documents\visual studio 2013\Projects\TestEloBuddy\TestEloBuddy\bin\Debug\SharpDX.dll
+c:\users\baost\documents\visual studio 2013\Projects\TestEloBuddy\TestEloBuddy\obj\Debug\TestEloBuddy.csprojResolveAssemblyReference.cache
+c:\users\baost\documents\visual studio 2013\Projects\TestEloBuddy\TestEloBuddy\obj\Debug\TestEloBuddy.exe
+c:\users\baost\documents\visual studio 2013\Projects\TestEloBuddy\TestEloBuddy\obj\Debug\TestEloBuddy.pdb
