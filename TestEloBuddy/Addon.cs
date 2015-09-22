@@ -56,14 +56,15 @@ namespace TestEloBuddy
 
             smiteMenu = myMenu.AddSubMenu("Smite settings", "smiteSection");
             smiteMenu.AddSeparator();
+            comboMenu.AddGroupLabel("Configuration");
             comboMenu.Add("smite.RED", new CheckBox("Smite RED"));
             comboMenu.Add("smite.BLUE", new CheckBox("smite BLUE"));
             comboMenu.Add("smite.DRAGON", new CheckBox("smite DRAGON"));
             comboMenu.Add("smite.PINKPENISH", new CheckBox("smite BARON"));
 
             //GameObject.OnCreate += castWinWard;
-            //Game.OnTick += actives;
-            //Game.OnUpdate += gameUpdate;
+            Game.OnTick += actives;
+            Game.OnUpdate += gameUpdate;
             
         }
 
