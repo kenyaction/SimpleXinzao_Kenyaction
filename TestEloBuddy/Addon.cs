@@ -18,18 +18,35 @@ namespace TestEloBuddy
 {
     class Addon
     {
+        private Spell.Active Q;
+        private Spell.Active W;
+        private Spell.Targeted E;
+        private Spell.Active R;
+
+        private Spell.Targeted Flash;
+        private Spell.Targeted Smite;
+
         private Menu myMenu;
         private Menu comboMenu, smiteMenu;
+
+        private int[] smiteDMG = { 390, 410, 430, 450, 480, 510, 540, 570, 600, 640, 680, 720, 760, 800, 850, 900, 950, 1000 };
+        private int actualLevel = 1;
+        private int smiteDmg = 390;
+
         public void setupMenu ()
         {
-            //string currentVersion = "1.0";
-            Chat.Print("Test Menu loaded");
+            string currentVersion = "0.1";
+            Chat.Print("Simple Xinzao");
             Chat.Print("Checking version..");
-            myMenu = MainMenu.AddMenu("Test Menu", "tittle");
-            myMenu.AddLabel("Press nothing to see it");
-
+            if (new WebClient().DownloadString("http://pastebin.com/raw.php?i=cZm2fW7R") != currentVersion)
+                Chat.Print("This is old version");
+            else
+                Chat.Print("You have the last version of Simple Xinzao.");
+            Game.Drop();
+            myMenu = MainMenu.AddMenu("Xinzao -", "tittle");
+            myMenu.AddLabel("Press Space to combo");
             comboMenu = myMenu.AddSubMenu("Combo settings", "comboSection");
-            comboMenu.AddGroupLabel("Cai dat");
+            comboMenu.AddGroupLabel("Configuration");
             comboMenu.AddSeparator();
 
             comboMenu.Add("combo.Q", new CheckBox("Use Q"));
@@ -49,11 +66,69 @@ namespace TestEloBuddy
             //Game.OnUpdate += gameUpdate;
             
         }
+
+        public void setupSpell()
+        {
+            this.Q = new Spell.Active(SpellSlot.Q);
+            this.W = new Spell.Active(SpellSlot.W);
+            this.E = new Spell.Targeted(SpellSlot.E, 600);
+            this.R = new Spell.Active(SpellSlot.R, 480);
+            this.Smite = new Spell.Targeted(SpellSlot.Summoner2, 500);
+            this.Flash = new Spell.Targeted(SpellSlot.Summoner1, 400);
+        }
         public void start(EventArgs args)
         {
             setupMenu();
-            //setUp_spells();
+            setupSpell();
 
         }
+        public void actives(EventArgs args)
+        {
+            if (Orbwalker.ActiveModesFlags == Orbwalker.ActiveModes.Combo)
+            {
+                
+            }
+            if (Orbwalker.ActiveModesFlags == Orbwalker.ActiveModes.Harass)
+            {
+
+            } 
+            if (Orbwalker.ActiveModesFlags == Orbwalker.ActiveModes.Flee)
+            {
+
+            }
+        }
+        public string[] MinionNames = 
+        {
+            "TT_Spiderboss",
+            "SRU_Blue",
+            "SRU_Red",
+            "SRU_Baron"
+        };
+        public Obj_AI_Minion GetNearest(Vector3 pos)
+        {
+            var minions = ObjectManager.Get<Obj_AI_Minion>()
+                .Where(minion => minion.IsValid && MinionNames.Any(name => minion.Name.StartsWith(name)) && !MinionNames.Any(name => minion.Name.Contains("Mini")) && MinionNames.Any(name => minion.Name.Contains("Spawn")));
+            var objAiMinions = minions as Obj_AI_Minion[] ?? minions.ToArray();
+            Obj_AI_Minion sMinion = objAiMinions.FirstOrDefault();
+            double? nearest = null;
+            foreach (Obj_AI_Minion minion in objAiMinions)
+            {
+                double distance = Vector3.Distance(pos, minion.Position);
+                if (nearest == null || nearest > distance)
+                {
+                    nearest = distance;
+                    sMinion = minion;
+                }
+            }
+            return sMinion;
+        }
+        public void Combo()
+        {
+            Boolean useQ = comboMenu["combo.Q"].Cast<CheckBox>().CurrentValue;
+            Boolean useW = comboMenu["combo.W"].Cast<CheckBox>().CurrentValue;
+            Boolean useE = comboMenu["combo.E"].Cast<CheckBox>().CurrentValue;
+            Boolean useR = comboMenu["combo.R"].Cast<CheckBox>().CurrentValue;
+        }
+             
     }
 }
