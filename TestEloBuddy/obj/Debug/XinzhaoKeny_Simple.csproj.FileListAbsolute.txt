@@ -1,10 +1,10 @@
-C:\Users\BaoST\Documents\Visual Studio 2013\Projects\TestEloBuddy\TestEloBuddy\bin\Debug\TestEloBuddy.exe.config
-C:\Users\BaoST\Documents\Visual Studio 2013\Projects\TestEloBuddy\TestEloBuddy\bin\Debug\TestEloBuddy.exe
-C:\Users\BaoST\Documents\Visual Studio 2013\Projects\TestEloBuddy\TestEloBuddy\bin\Debug\TestEloBuddy.pdb
+C:\Users\BaoST\Documents\Visual Studio 2013\Projects\TestEloBuddy\TestEloBuddy\bin\Debug\XinzhaoKenySimple.exe.config
+C:\Users\BaoST\Documents\Visual Studio 2013\Projects\TestEloBuddy\TestEloBuddy\bin\Debug\XinzhaoKenySimple.exe
+C:\Users\BaoST\Documents\Visual Studio 2013\Projects\TestEloBuddy\TestEloBuddy\bin\Debug\XinzhaoKenySimple.pdb
 C:\Users\BaoST\Documents\Visual Studio 2013\Projects\TestEloBuddy\TestEloBuddy\bin\Debug\EloBuddy.dll
 C:\Users\BaoST\Documents\Visual Studio 2013\Projects\TestEloBuddy\TestEloBuddy\bin\Debug\EloBuddy.SDK.dll
 C:\Users\BaoST\Documents\Visual Studio 2013\Projects\TestEloBuddy\TestEloBuddy\bin\Debug\Newtonsoft.Json.dll
 C:\Users\BaoST\Documents\Visual Studio 2013\Projects\TestEloBuddy\TestEloBuddy\bin\Debug\SharpDX.Direct3D9.dll
 C:\Users\BaoST\Documents\Visual Studio 2013\Projects\TestEloBuddy\TestEloBuddy\bin\Debug\SharpDX.dll
-C:\Users\BaoST\Documents\Visual Studio 2013\Projects\TestEloBuddy\TestEloBuddy\obj\Debug\TestEloBuddy.exe
-C:\Users\BaoST\Documents\Visual Studio 2013\Projects\TestEloBuddy\TestEloBuddy\obj\Debug\TestEloBuddy.pdb
+C:\Users\BaoST\Documents\Visual Studio 2013\Projects\TestEloBuddy\TestEloBuddy\obj\Debug\XinzhaoKenySimple.exe
+C:\Users\BaoST\Documents\Visual Studio 2013\Projects\TestEloBuddy\TestEloBuddy\obj\Debug\XinzhaoKenySimple.pdb

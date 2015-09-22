@@ -7,8 +7,8 @@
     <ProjectGuid>{4439884E-C4B4-4AAB-912F-9CFD92F9DB9E}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TestEloBuddy</RootNamespace>
-    <AssemblyName>TestEloBuddy</AssemblyName>
+    <RootNamespace>XinzhaoKenySimple</RootNamespace>
+    <AssemblyName>XinzhaoKenySimple</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
