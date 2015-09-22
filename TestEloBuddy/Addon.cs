@@ -122,12 +122,47 @@ namespace TestEloBuddy
             }
             return sMinion;
         }
+        public void gameUpdate(EventArgs args)
+        {
+
+            if (ObjectManager.Player.Level > actualLevel)
+            {
+                actualLevel = ObjectManager.Player.Level;
+                smiteDmg = smiteDMG[actualLevel - 1];
+            }
+
+            var mob = GetNearest(ObjectManager.Player.ServerPosition);
+            if (mob != null)
+            {
+                if (Smite.IsReady() && smiteDmg >= mob.Health && Vector3.Distance(ObjectManager.Player.ServerPosition, mob.ServerPosition) <= Smite.Range)
+                {
+                    Smite.Cast(mob);
+                }
+            }
+        }
         public void Combo()
         {
             Boolean useQ = comboMenu["combo.Q"].Cast<CheckBox>().CurrentValue;
             Boolean useW = comboMenu["combo.W"].Cast<CheckBox>().CurrentValue;
             Boolean useE = comboMenu["combo.E"].Cast<CheckBox>().CurrentValue;
             Boolean useR = comboMenu["combo.R"].Cast<CheckBox>().CurrentValue;
+            var target = TargetSelector.GetTarget(600, DamageType.Physical);
+            if(E.IsReady() &&  E.IsInRange(target))
+            {
+                Q.Cast();
+                W.Cast();
+                E.Cast(target);
+                Smite.Cast(target);
+
+            }
+            if (useR && R.IsReady())
+            {
+                R.Cast();
+            }
+        }
+        public void smiteMinion(Obj_AI_Minion minion)
+        {
+            Smite.Cast(minion);
         }
              
     }
