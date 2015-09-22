@@ -23,8 +23,8 @@ namespace TestEloBuddy
         private Spell.Targeted E;
         private Spell.Active R;
 
-        private Spell.Targeted Flash;
-        private Spell.Targeted Smite;
+        private Spell.Targeted flash;
+        private Spell.Targeted smite;
 
         private Menu myMenu;
         private Menu comboMenu, smiteMenu;
@@ -43,7 +43,7 @@ namespace TestEloBuddy
             else
                 Chat.Print("You have the last version of Simple Xinzao.");
             Game.Drop();
-            myMenu = MainMenu.AddMenu("Xinzao -", "tittle");
+            myMenu = MainMenu.AddMenu("Xinzhao", "tittle");
             myMenu.AddLabel("Press Space to combo");
             comboMenu = myMenu.AddSubMenu("Combo settings", "comboSection");
             comboMenu.AddGroupLabel("Configuration");
@@ -53,14 +53,15 @@ namespace TestEloBuddy
             comboMenu.Add("combo.W", new CheckBox("Use W"));
             comboMenu.Add("combo.R", new CheckBox("Use R"));
             comboMenu.Add("combo.E", new CheckBox("Use E"));
+            comboMenu.Add("combo.smite",new CheckBox("Use Smite"));
 
             smiteMenu = myMenu.AddSubMenu("Smite settings", "smiteSection");
             smiteMenu.AddSeparator();
-            comboMenu.AddGroupLabel("Configuration");
-            comboMenu.Add("smite.RED", new CheckBox("Smite RED"));
-            comboMenu.Add("smite.BLUE", new CheckBox("smite BLUE"));
-            comboMenu.Add("smite.DRAGON", new CheckBox("smite DRAGON"));
-            comboMenu.Add("smite.PINKPENISH", new CheckBox("smite BARON"));
+            smiteMenu.AddGroupLabel("Configuration");
+            smiteMenu.Add("smite.RED", new CheckBox("Smite RED"));
+            smiteMenu.Add("smite.BLUE", new CheckBox("smite BLUE"));
+            smiteMenu.Add("smite.DRAGON", new CheckBox("smite DRAGON"));
+            smiteMenu.Add("smite.PINKPENISH", new CheckBox("smite BARON"));
 
             //GameObject.OnCreate += castWinWard;
             Game.OnTick += actives;
@@ -74,8 +75,8 @@ namespace TestEloBuddy
             this.W = new Spell.Active(SpellSlot.W);
             this.E = new Spell.Targeted(SpellSlot.E, 600);
             this.R = new Spell.Active(SpellSlot.R, 480);
-            this.Smite = new Spell.Targeted(SpellSlot.Summoner2, 500);
-            this.Flash = new Spell.Targeted(SpellSlot.Summoner1, 400);
+            this.smite = new Spell.Targeted(SpellSlot.Summoner2, 500);
+            this.flash = new Spell.Targeted(SpellSlot.Summoner1, 400);
         }
         public void start(EventArgs args)
         {
@@ -135,9 +136,9 @@ namespace TestEloBuddy
             var mob = GetNearest(ObjectManager.Player.ServerPosition);
             if (mob != null)
             {
-                if (Smite.IsReady() && smiteDmg >= mob.Health && Vector3.Distance(ObjectManager.Player.ServerPosition, mob.ServerPosition) <= Smite.Range)
+                if (smite.IsReady() && smiteDmg >= mob.Health && Vector3.Distance(ObjectManager.Player.ServerPosition, mob.ServerPosition) <= smite.Range)
                 {
-                    Smite.Cast(mob);
+                    smite.Cast(mob);
                 }
             }
         }
@@ -147,13 +148,19 @@ namespace TestEloBuddy
             Boolean useW = comboMenu["combo.W"].Cast<CheckBox>().CurrentValue;
             Boolean useE = comboMenu["combo.E"].Cast<CheckBox>().CurrentValue;
             Boolean useR = comboMenu["combo.R"].Cast<CheckBox>().CurrentValue;
+            Boolean usesmite = comboMenu["combo.smite"].Cast<CheckBox>().CurrentValue;
+
             var target = TargetSelector.GetTarget(600, DamageType.Physical);
+            if (usesmite && smite.IsReady())
+            {
+                smite.Cast(target);
+            }
             if(E.IsReady() &&  E.IsInRange(target))
             {
                 Q.Cast();
                 W.Cast();
                 E.Cast(target);
-                Smite.Cast(target);
+                smite.Cast(target);
 
             }
             if (useR && R.IsReady())
@@ -163,7 +170,7 @@ namespace TestEloBuddy
         }
         public void smiteMinion(Obj_AI_Minion minion)
         {
-            Smite.Cast(minion);
+            smite.Cast(minion);
         }
              
     }
