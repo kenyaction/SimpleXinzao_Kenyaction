@@ -86,15 +86,15 @@ namespace TestEloBuddy
         {
             if (Orbwalker.ActiveModesFlags == Orbwalker.ActiveModes.Combo)
             {
-                
+                Combo();
             }
             if (Orbwalker.ActiveModesFlags == Orbwalker.ActiveModes.Harass)
             {
-
+                Combo();
             } 
             if (Orbwalker.ActiveModesFlags == Orbwalker.ActiveModes.Flee)
             {
-
+                Combo();
             }
         }
         public string[] MinionNames = 
