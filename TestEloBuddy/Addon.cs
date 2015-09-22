@@ -59,9 +59,9 @@ namespace TestEloBuddy
             smiteMenu.AddSeparator();
             smiteMenu.AddGroupLabel("Configuration");
             smiteMenu.Add("smite.RED", new CheckBox("Smite RED"));
-            smiteMenu.Add("smite.BLUE", new CheckBox("smite BLUE"));
-            smiteMenu.Add("smite.DRAGON", new CheckBox("smite DRAGON"));
-            smiteMenu.Add("smite.PINKPENISH", new CheckBox("smite BARON"));
+            smiteMenu.Add("smite.BLUE", new CheckBox("Smite BLUE"));
+            smiteMenu.Add("smite.DRAGON", new CheckBox("Smite DRAGON"));
+            smiteMenu.Add("smite.PINKPENISH", new CheckBox("Smite BARON"));
 
             //GameObject.OnCreate += castWinWard;
             Game.OnTick += actives;
