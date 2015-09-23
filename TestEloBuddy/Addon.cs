@@ -27,7 +27,7 @@ namespace TestEloBuddy
         private Spell.Targeted smite;
 
         private Menu myMenu;
-        private Menu comboMenu, smiteMenu;
+        private Menu comboMenu, smiteMenu,farmMenu;
 
         private int[] smiteDMG = { 390, 410, 430, 450, 480, 510, 540, 570, 600, 640, 680, 720, 760, 800, 850, 900, 950, 1000 };
         private int actualLevel = 1;
@@ -58,10 +58,17 @@ namespace TestEloBuddy
             smiteMenu = myMenu.AddSubMenu("Smite settings", "smiteSection");
             smiteMenu.AddSeparator();
             smiteMenu.AddGroupLabel("Configuration");
+            smiteMenu.Add("smite.Auto", new CheckBox("Auto Smite"));
             smiteMenu.Add("smite.RED", new CheckBox("Smite RED"));
             smiteMenu.Add("smite.BLUE", new CheckBox("Smite BLUE"));
             smiteMenu.Add("smite.DRAGON", new CheckBox("Smite DRAGON"));
-            smiteMenu.Add("smite.PINKPENISH", new CheckBox("Smite BARON"));
+            smiteMenu.Add("smite.BARON", new CheckBox("Smite BARON"));
+
+            farmMenu = myMenu.AddSubMenu("Farming", "farmSection");
+            farmMenu.AddSeparator();
+            farmMenu.AddGroupLabel("Lane Clear");
+            farmMenu.Add("farmlaneclear.Q", new CheckBox("Use Q"));
+            farmMenu.Add("farmlaneclear.W", new CheckBox("Use W"));
 
             //GameObject.OnCreate += castWinWard;
             Game.OnTick += actives;
@@ -98,10 +105,14 @@ namespace TestEloBuddy
             {
                 Combo();
             }
+            if(Orbwalker.ActiveModesFlags == Orbwalker.ActiveModes.LaneClear)
+            {
+                laneClear();
+            }
         }
         public string[] MinionNames = 
         {
-            "TT_Spiderboss",
+            "SRU_Dragon",
             "SRU_Blue",
             "SRU_Red",
             "SRU_Baron"
@@ -126,19 +137,23 @@ namespace TestEloBuddy
         }
         public void gameUpdate(EventArgs args)
         {
-
-            if (ObjectManager.Player.Level > actualLevel)
+            Boolean usesmite = comboMenu["smite.Auto"].Cast<CheckBox>().CurrentValue;
+            if (usesmite)
             {
-                actualLevel = ObjectManager.Player.Level;
-                smiteDmg = smiteDMG[actualLevel - 1];
-            }
 
-            var mob = GetNearest(ObjectManager.Player.ServerPosition);
-            if (mob != null)
-            {
-                if (smite.IsReady() && smiteDmg >= mob.Health && Vector3.Distance(ObjectManager.Player.ServerPosition, mob.ServerPosition) <= smite.Range)
+                if (ObjectManager.Player.Level > actualLevel)
                 {
-                    smite.Cast(mob);
+                    actualLevel = ObjectManager.Player.Level;
+                    smiteDmg = smiteDMG[actualLevel - 1];
+                }
+
+                var mob = GetNearest(ObjectManager.Player.ServerPosition);
+                if (mob != null)
+                {
+                    if (smite.IsReady() && smiteDmg >= mob.Health && Vector3.Distance(ObjectManager.Player.ServerPosition, mob.ServerPosition) <= smite.Range)
+                    {
+                        smite.Cast(mob);
+                    }
                 }
             }
         }
@@ -155,12 +170,19 @@ namespace TestEloBuddy
             {
                 smite.Cast(target);
             }
-            if(E.IsReady() &&  E.IsInRange(target))
+            if (useW && W.IsReady())
+            {
+                W.Cast();
+            }
+            if(useQ && Q.IsReady())
             {
                 Q.Cast();
-                W.Cast();
+            }
+            if(E.IsReady() &&  E.IsInRange(target))
+            {
+                
                 E.Cast(target);
-                smite.Cast(target);
+            
 
             }
             if (useR && R.IsReady())
@@ -168,10 +190,23 @@ namespace TestEloBuddy
                 R.Cast();
             }
         }
-        public void smiteMinion(Obj_AI_Minion minion)
+        public void laneClear()
         {
-            smite.Cast(minion);
+            Boolean useQ = comboMenu["combo.Q"].Cast<CheckBox>().CurrentValue;
+            Boolean useW = comboMenu["combo.W"].Cast<CheckBox>().CurrentValue;
+            //Boolean useE = comboMenu["combo.E"].Cast<CheckBox>().CurrentValue;
+
+            if (useW && W.IsReady())
+            {
+                W.Cast();
+            }
+            if (useQ && Q.IsReady())
+            {
+                Q.Cast();
+            }
+            
         }
+        
              
     }
 }

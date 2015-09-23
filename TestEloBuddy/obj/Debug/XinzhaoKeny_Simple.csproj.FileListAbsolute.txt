@@ -8,3 +8,4 @@ C:\Users\BaoST\Documents\Visual Studio 2013\Projects\TestEloBuddy\TestEloBuddy\b
 C:\Users\BaoST\Documents\Visual Studio 2013\Projects\TestEloBuddy\TestEloBuddy\bin\Debug\SharpDX.dll
 C:\Users\BaoST\Documents\Visual Studio 2013\Projects\TestEloBuddy\TestEloBuddy\obj\Debug\XinzhaoKenySimple.exe
 C:\Users\BaoST\Documents\Visual Studio 2013\Projects\TestEloBuddy\TestEloBuddy\obj\Debug\XinzhaoKenySimple.pdb
+C:\Users\BaoST\Documents\Visual Studio 2013\Projects\TestEloBuddy\TestEloBuddy\obj\Debug\XinzhaoKeny_Simple.csprojResolveAssemblyReference.cache
